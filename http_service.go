@@ -1,7 +1,7 @@
 package goginx
 
 import (
-	//"context"
+	"context"
 	"log"
 	"net"
 	"net/http"
@@ -94,10 +94,9 @@ func (srv *httpServer) Shutdown() {
 
 	srv.setState(STATE_SHUTTING_DOWN)
 	
-	srv.SetKeepAlivesEnabled(false)
-	err := srv.goginxListener.Close()
-
 	go srv.hammerTime(DefaultHammerTime)
+	//srv.SetKeepAlivesEnabled(false)
+	//err := srv.goginxListener.Close()
 	ctx, _ := context.WithTimeout(context.TODO(), DefaultHammerTime)
 	err := srv.Server.Shutdown(ctx)
 

@@ -4,9 +4,8 @@ import (
 	"net"
 	"os"
 	"sync"
-	//"syscall"
+	"syscall"
 	"time"
-	"log"
 )
 
 func newGoginxListener(l net.Listener, wg *sync.WaitGroup) *goginxListener {
