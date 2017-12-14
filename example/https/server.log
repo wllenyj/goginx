@@ -1,0 +1,50 @@
+22769 start
+22769 child 
+22769 child lock file
+2017/12/05 20:36:02 http: TLS handshake error from 127.0.0.1:30406: tls: first record does not look like a TLS handshake
+2017/12/05 20:36:15 http: TLS handshake error from 127.0.0.1:30520: tls: first record does not look like a TLS handshake
+2017/12/05 20:37:07 http: TLS handshake error from 127.0.0.1:30943: tls: first record does not look like a TLS handshake
+2017/12/05 20:38:02 http: TLS handshake error from 127.0.0.1:31405: tls: first record does not look like a TLS handshake
+2017/12/05 20:38:05 http: TLS handshake error from 127.0.0.1:31444: tls: first record does not look like a TLS handshake
+2017/12/05 20:39:25 http: TLS handshake error from 127.0.0.1:32134: tls: first record does not look like a TLS handshake
+2017/12/05 20:39:36 http: TLS handshake error from 127.0.0.1:32212: tls: first record does not look like a TLS handshake
+2017/12/05 20:39:53 http: TLS handshake error from 10.125.54.51:50380: tls: first record does not look like a TLS handshake
+2017/12/05 20:40:05 http: TLS handshake error from 10.125.54.51:50499: remote error: tls: bad certificate
+2017/12/05 20:44:16 22769 Received SIGTERM.
+2017/12/05 20:44:16 22769 0.0.0.0:8043 Listener closed.
+daemon release false
+30676 start
+30676 child 
+30676 child lock file
+2017/12/05 20:44:43 30676 Received SIGHUP. forking.
+Files() []*os.File{(*os.File)(0xc42009c040), (*os.File)(0xc42009c030), (*os.File)(0xc42009c030), (*os.File)(0xc42009c040), (*os.File)(0xc42009c048)}
+allfiles []*os.File{(*os.File)(0xc42009c040), (*os.File)(0xc42009c030), (*os.File)(0xc42009c030), (*os.File)(0xc42009c040), (*os.File)(0xc42009c048), (*os.File)(0xc42000e018)} 1
+cwd:/home/wanglei01/test/go/src/goginx/example/https exe:/home/wanglei01/test/go/src/goginx/example/https/server args:[./server]
+start process ok. 30910
+30910 start
+30910 child 
+30910 child lock file
+2017/12/05 20:44:44 kill parent  30676
+2017/12/05 20:44:44 30676 Received SIGTERM.
+2017/12/05 20:44:44 30676 0.0.0.0:8043 Listener closed.
+daemon release true
+2017/12/05 20:47:02 30910 Received SIGTERM.
+2017/12/05 20:47:02 30910 0.0.0.0:8043 Listener closed.
+daemon release false
+418 start
+418 child 
+418 child lock file
+2017/12/05 20:47:52 418 Received SIGHUP. forking.
+Files() []*os.File{(*os.File)(0xc420092040), (*os.File)(0xc420092030), (*os.File)(0xc420092030), (*os.File)(0xc420092040), (*os.File)(0xc420092048)}
+allfiles []*os.File{(*os.File)(0xc420092040), (*os.File)(0xc420092030), (*os.File)(0xc420092030), (*os.File)(0xc420092040), (*os.File)(0xc420092048), (*os.File)(0xc420178020)} 1
+cwd:/home/wanglei01/test/go/src/goginx/example/https exe:/home/wanglei01/test/go/src/goginx/example/https/server args:[./server]
+start process ok. 1017
+1017 start
+1017 child 
+1017 child lock file
+2017/12/05 20:47:53 kill parent  418
+2017/12/05 20:47:53 418 Received SIGTERM.
+daemon release true
+2017/12/05 20:52:07 1017 Received SIGTERM.
+2017/12/05 20:52:07 1017 0.0.0.0:8043 Listener closed.
+daemon release false
