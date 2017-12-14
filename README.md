@@ -6,4 +6,4 @@ run go application like nginx
 * [endless](https://github.com/fvbock/endless)
 
 * [overseer](https://github.com/jpillora/overseer)
-* [link](https://github.com/funny/link)
+
