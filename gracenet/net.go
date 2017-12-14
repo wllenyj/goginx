@@ -266,6 +266,7 @@ func (n *Net) StartProcess() (int, error) {
 		if err != nil {
 			return 0, err
 		}
+		syscall.SetNonblock(int(files[i].Fd()), true)
 		defer files[i].Close()
 	}
 
