@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goginx"
+	"github.com/wllenyj/goginx"
 	"github.com/gorilla/mux"
 	"fmt"
 	"net/http"

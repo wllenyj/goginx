@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
-	"goginx"
+	"github.com/wllenyj/goginx"
 	"time"
 	"log"
 	"os"

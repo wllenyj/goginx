@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gorilla/mux"
-	"goginx"
+	"github.com/wllenyj/goginx"
 	"net/http"
 	"log"
 	"os"
