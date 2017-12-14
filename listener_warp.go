@@ -39,20 +39,19 @@ func (this *goginxListener) Accept() (net.Conn, error) {
 }
 
 func (this *goginxListener) Close() error {
-	//if this.stopped {
-	//	return syscall.EINVAL
-	//}
-	//this.stopped = true
-	log.Println("listener close")
+	if this.stopped {
+		return syscall.EINVAL
+	}
+	this.stopped = true
 	return this.Listener.Close()
 }
 
-func (this *goginxListener) File() *os.File {
+func (this *goginxListener) File() (*os.File, error) {
 	// returns a dup(2) - FD_CLOEXEC flag *not* set
 	//tl := this.Listener.(*net.TCPListener)
 	//fl, _ := tl.File()
-	tl, _ := this.Listener.(filer).File()
-	return tl
+	tl, err := this.Listener.(filer).File()
+	return tl, err
 }
 
 type filer interface {

@@ -98,8 +98,8 @@ func (srv *httpServer) Shutdown() {
 	err := srv.goginxListener.Close()
 
 	go srv.hammerTime(DefaultHammerTime)
-	//ctx, _ := context.WithTimeout(context.TODO(), DefaultHammerTime)
-	//err := srv.Server.Shutdown(ctx)
+	ctx, _ := context.WithTimeout(context.TODO(), DefaultHammerTime)
+	err := srv.Server.Shutdown(ctx)
 
 	if err != nil {
 		log.Println(syscall.Getpid(), "http server shutdown error:", err)
@@ -122,10 +122,6 @@ func (srv *httpServer) hammerTime(d time.Duration) {
 	//if err != nil {
 	//	log.Println("http server close err. %s", err)
 	//}
-	err := srv.goginxListener.Close()
-	if err != nil {
-		log.Println("listener close err. %s", err)
-	}
 	for {
 		if srv.getState() == STATE_TERMINATE {
 			break
