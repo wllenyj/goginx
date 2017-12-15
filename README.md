@@ -38,13 +38,14 @@ func main() {
 ``` shell
 $> go get github.com/wllenyj/goginx
 $> go build http.go
-$> ./http
+$> ./http -p 8883
+$> curl "localhost:8883/hello"
+pid:5442
 $> ./http -s restart
+$> curl "localhost:8883/hello"
+pid:6312
 $> ./http -s stop
-```
-```
-   -s stop     graceful shutdown
-   -s restart  graceful restart
+curl: (7) couldn't connect to host
 ```
 
 ## References
