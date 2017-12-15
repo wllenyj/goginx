@@ -1,5 +1,10 @@
 # goginx
-run go application like nginx
+Run go application like nginx. Implements the daemon and graceful restart. 
+
+> Usage:
+>   -stop     graceful shutdown
+>   -restart  graceful restart
+
 
 * [facebook grace](https://github.com/facebookgo/grace)
 * [go-daemon](https://github.com/sevlyar/go-daemon)
