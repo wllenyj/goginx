@@ -91,6 +91,35 @@ func (prog *Program) ListenTCP(addr string) (net.Listener, error) {
 	return prog.net.Listen("tcp", addr)
 }
 
+func (prog *Program) ListenTLS(addr string, svr_pem, svr_key string, client_pem []string) (net.Listener, error) {
+	cert, err := tls.LoadX509KeyPair(svr_pem, svr_key)
+	if err != nil {
+		return nil, err
+	}
+	var clientCertPool *x509.CertPool
+	if len(client_pem) > 0 {
+		clientCertPool = x509.NewCertPool()
+		for _, cpem := range client_pem {
+			certBytes, err := ioutil.ReadFile(cpem)
+			if err != nil {
+				return nil, err
+			}
+			ok := clientCertPool.AppendCertsFromPEM(certBytes)
+			if !ok {
+				return nil, fmt.Errorf("AppendCertsFromPEM fail")
+			}
+		}
+	}
+	config := &tls.Config{
+		Certificates: []tls.Certificate{cert},
+		ClientAuth:   tls.RequireAndVerifyClientCert,
+		ClientCAs:    clientCertPool,
+	}
+
+	ln, err := prog.ListenTCP(addr)
+	return tls.NewListener(ln, config), nil
+}
+
 func (prog *Program) ListenAndServer(addr string, handler http.Handler) error {
 	srv := NewHttpServer(addr, handler)
 
@@ -200,7 +229,7 @@ func (this *Program) handleSignals() {
 			log.Println(pid, "Received SIGUSR2.")
 			//srv.hammerTime(0 * time.Second)
 		case syscall.SIGINT, syscall.SIGTERM:
-			signal.Stop(this.sigChan)	
+			signal.Stop(this.sigChan)
 			log.Printf("%d Received %v.", pid, sig)
 			for _, srv := range this.sds {
 				srv.Shutdown()
