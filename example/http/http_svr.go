@@ -44,7 +44,7 @@ func main() {
 	mux1.HandleFunc("/hello1", handler1).
 		Methods("GET")
 
-	if err = program.ListenAndServer(":" + *port, mux1); err != nil {
+	if err = program.ListenAndServe(":" + *port, mux1); err != nil {
 		log.Printf("listen err. %s", err)
 		return
 	}

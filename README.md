@@ -28,7 +28,7 @@ func main() {
     }   
     http.HandleFunc("/hello", handler)
 
-    if err = program.ListenAndServer(":8882", nil); err != nil {
+    if err = program.ListenAndServe(":8882", nil); err != nil {
         log.Printf("listen err. %s", err)
         return
     }   

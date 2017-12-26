@@ -123,7 +123,7 @@ func (prog *Program) ListenTLS(addr string, svr_pem, svr_key string, client_pem 
 	return tls.NewListener(ln, config), nil
 }
 
-func (prog *Program) ListenAndServer(addr string, handler http.Handler) error {
+func (prog *Program) ListenAndServe(addr string, handler http.Handler) error {
 	srv := NewHttpServer(addr, handler)
 
 	l, err := prog.ListenTCP(addr)

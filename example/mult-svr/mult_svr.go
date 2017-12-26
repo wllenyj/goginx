@@ -82,7 +82,7 @@ func main() {
 	mux1 := mux.NewRouter()
 	mux1.HandleFunc("/hello", handler).Methods("GET")
 
-	if err = program.ListenAndServer(":41232", mux1); err != nil {
+	if err = program.ListenAndServe(":41232", mux1); err != nil {
 		log.Printf("listen err. %s", err)
 		return
 	}
