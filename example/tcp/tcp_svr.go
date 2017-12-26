@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goginx"
+	"github.com/wllenyj/goginx"
 	"time"
 	"log"
 	"os"

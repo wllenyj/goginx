@@ -16,7 +16,8 @@ const (
 )
 
 // Default file permissions for log and pid files.
-const FILE_PERM = os.FileMode(0640)
+const FILE_PERM = os.FileMode(0644)
+const DEF_UMASK = int(022)
 
 type Option func(*Options) error
 
@@ -83,6 +84,18 @@ func LogFile(name string, perm os.FileMode) Option {
 		return nil
 	}
 }
+func LogFileName(name string) Option {
+	return func(opt *Options) error {
+		opt.LogFileName = name
+		return nil
+	}
+}
+func LogFilePerm(perm os.FileMode) Option {
+	return func(opt *Options) error {
+		opt.LogFilePerm = perm
+		return nil
+	}
+}
 
 func WorkDir(dir string) Option {
 	return func(opt *Options) error {
@@ -118,7 +131,7 @@ func DefaultOption(opts ...Option) (*Options, error) {
 		LogFilePerm: FILE_PERM,
 
 		WorkDir: filepath.Dir(abspath),
-		Umask:   027,
+		//Umask:   022,
 
 		//flagSignal: map[string]os.Signal{
 		//	"restart": syscall.SIGHUP,

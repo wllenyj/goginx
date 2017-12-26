@@ -2,8 +2,8 @@ package goginx
 
 import (
 	"crypto/tls"
-	"goginx/daemon"
-	"goginx/gracenet"
+	"github.com/wllenyj/goginx/daemon"
+	"github.com/wllenyj/goginx/gracenet"
 	"log"
 	"net"
 	"net/http"
