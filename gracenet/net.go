@@ -311,6 +311,14 @@ func (n *Net) StartProcess() (int, error) {
 		fmt.Printf("start process err. %s", err)
 		return 0, err
 	}
+	go func(proc *os.Process) {
+		state, err := proc.Wait()
+		if err != nil {
+			fmt.Printf("child %d wait err. %s\n", proc.Pid, err)
+			return
+		}
+		fmt.Printf("child %d wait . %v\n", proc.Pid, state)
+	}(process)
 	fmt.Printf("start process ok. %d\n", process.Pid)
 	return process.Pid, nil
 }
