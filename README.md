@@ -1,5 +1,5 @@
 # goginx
-Run go application like nginx. Implements the daemon, graceful restart and graceful shutdown. 
+A library of Go application, it can make the Go application run like Nginx. Implements the daemon, graceful restart and graceful shutdown.
 
 ## Usage:
 
@@ -45,6 +45,7 @@ $> ./http -s restart
 $> curl "localhost:8883/hello"
 pid:6312
 $> ./http -s stop
+$> curl "localhost:8883/hello"
 curl: (7) couldn't connect to host
 ```
 
@@ -52,6 +53,5 @@ curl: (7) couldn't connect to host
 * [facebook grace](https://github.com/facebookgo/grace)
 * [go-daemon](https://github.com/sevlyar/go-daemon)
 * [endless](https://github.com/fvbock/endless)
-
 * [overseer](https://github.com/jpillora/overseer)
 
