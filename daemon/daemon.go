@@ -63,6 +63,7 @@ type Daemon struct {
 	abspath  string
 	pidFile  *LockFile
 	logFile  *os.File
+	errFile  *os.File
 	nullFile *os.File
 
 	// golang bool default value is false

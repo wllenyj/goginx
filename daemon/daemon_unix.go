@@ -164,7 +164,7 @@ func (d *Daemon) child() (err error) {
 	initialized = true 
 	//d.nullFile = os.NewFile(0, "/dev/null")
 	d.logFile = os.NewFile(1, d.Opts.LogFileName)
-	os.NewFile(2, d.Opts.LogFileName)
+	d.errFile = os.NewFile(2, d.Opts.LogFileName)
 	d.nullFile = os.NewFile(3, "/dev/null")
 
 	fmt.Printf("%d child \n", os.Getpid())
