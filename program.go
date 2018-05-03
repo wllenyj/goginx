@@ -42,7 +42,7 @@ func NewProgram() *Program {
 	return &Program{
 		net:     &gracenet.Net{},
 		sds:     make([]Service, 0),
-		sigChan: make(chan os.Signal),
+		sigChan: make(chan os.Signal, 1),
 	}
 }
 
@@ -221,16 +221,9 @@ func (this *Program) handleSignals() {
 		switch sig {
 		case syscall.SIGHUP:
 			log.Println(pid, "Received SIGHUP. forking.")
-			//for _, srv := range this.sds {
-			//}
 			if _, err := this.net.StartProcess(); err != nil {
 				log.Println("StartProcess err.%s", err)
 			}
-		case syscall.SIGUSR1:
-			log.Println(pid, "Received SIGUSR1.")
-		case syscall.SIGUSR2:
-			log.Println(pid, "Received SIGUSR2.")
-			//srv.hammerTime(0 * time.Second)
 		case syscall.SIGINT, syscall.SIGTERM:
 			signal.Stop(this.sigChan)
 			log.Printf("%d Received %v.", pid, sig)
@@ -238,9 +231,12 @@ func (this *Program) handleSignals() {
 				srv.Shutdown()
 			}
 			return
-		case syscall.SIGTSTP:
-			log.Println(pid, "Received SIGTSTP.")
 		default:
+			err := daemon.HandleSignals(sig)
+			if err != nil {
+				log.Printf("%v handle err: %v\n", sig, err)
+			}
+
 			log.Printf("Received %v: nothing i care about...\n", sig)
 		}
 		//srv.signalHooks(POST_SIGNAL, sig)

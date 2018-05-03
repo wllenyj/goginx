@@ -48,6 +48,10 @@ func ServeSignals() (err error) {
 	return
 }
 
+func HandleSignals(sig os.Signal) error {
+	return handlers[sig](sig)
+}
+
 var handlers = make(map[os.Signal]SignalHandlerFunc)
 
 func init() {

@@ -2,6 +2,7 @@ package daemon
 
 import (
 	"errors"
+	"flag"
 	"github.com/kardianos/osext"
 	"os"
 	"path/filepath"
@@ -111,13 +112,15 @@ func Umask(umask int) Option {
 	}
 }
 
-//func ConfigSignal(cmd string, sig os.Signal, handler SignalHandlerFunc) Option {
-//	return func(opt *Options) error {
-//		opt.flagSignal[cmd] = sig
-//		opt.signalHandlers[sig] = handler
-//		return nil
-//	}
-//}
+func SignalConfig(cmd string, sig os.Signal, handler SignalHandlerFunc) Option {
+	return func(opt *Options) error {
+		if !flag.Parsed() {
+			flag.Parse()
+		}
+		AddCommand(StringFlag(sigflag, cmd), sig, handler)
+		return nil
+	}
+}
 
 func DefaultOption(opts ...Option) (*Options, error) {
 	abspath, err := osext.Executable()

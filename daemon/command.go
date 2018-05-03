@@ -1,8 +1,8 @@
-package daemon 
+package daemon
 
 import (
-	"os"
 	"flag"
+	"os"
 )
 
 var sigflag = flag.String("s", "", `send signal to the daemon
@@ -11,7 +11,9 @@ var sigflag = flag.String("s", "", `send signal to the daemon
 		reload — reloading the configuration file`)
 
 func ConfigSignal(cmd string, sig os.Signal) {
-	flag.Parse()
+	if !flag.Parsed() {
+		flag.Parse()
+	}
 	AddFlag(StringFlag(sigflag, cmd), sig)
 	//SetSigHandler(handler, sig)
 }
